@@ -20,20 +20,18 @@ public class City {
 
     /**
      * Method calculating the distance between two cities using their respective x and y coordinates.
-     * @param city1
+     * This uses the mathematical formulea to calculate distance between two points d=√((x2 – x1)² + (y2 – y1)²).
      * @param city2
-     * @return distance, which is the distance between the two cities.
+     * @return the distance between two cities.
      *
      **/
-    public double getDistance(City city1, City city2){
-        int x1 = city1.x_coordinate;
-        int y1 = city1.y_coordinate;
+    public double getDistance(City city2){
 
         int x2 = city2.x_coordinate;
         int y2 = city2.y_coordinate;
 
-        double x_pow = Math.pow((x2-x1),2);
-        double y_pow = Math.pow((y2-y1),2);
+        double x_pow = Math.abs(Math.pow((x2-this.x_coordinate),2));
+        double y_pow = Math.abs(Math.pow((y2-this.y_coordinate),2));
 
         double distance = Math.sqrt(x_pow + y_pow);
 
