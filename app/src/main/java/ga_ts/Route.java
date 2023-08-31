@@ -20,28 +20,33 @@ public class Route {
      **/
     public Route(ArrayList<City> cities){
         route = createRoute(cities);
-        fitness = calculateFitness();
         routeDistance = routeDistance();
+        fitness = calculateFitnessHyperbole();
     }
 
     /**
      * Evaluate how good or bad the quality of a route is and returns a measure of it.
+     * Normal distribution is used as the function to evaluate our route.
      * @return fitness
      *
      **/
-    public double calculateFitness(){
+    public double calculateFitnessNormal(){
 
         return fitness;
     }
 
-    public double calculateFitnessSin(){
-
-        return fitness;
+    /**
+     * Another example of calculating fitness using the sine function instead.
+     **/
+    public double calculateFitnessSine(){
+        return Math.sin(routeDistance);
     }
 
+    /**
+     * Another example of calculating fitness using the hyperbole distribution function instead.
+     **/
     public double calculateFitnessHyperbole(){
-
-        return fitness;
+        return 1 / (routeDistance);
     }
 
     /**
