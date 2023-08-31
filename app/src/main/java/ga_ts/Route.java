@@ -9,13 +9,13 @@ public class Route {
 
     public ArrayList<City> route;
     public double fitness;
-    public int routeDistance;
+    public double routeDistance;
 
     /**
      * Constructor method which creates and initialise the object (the route).
      * From a list of cities, it randomly creates a route ensuring that there are no duplicate cities.
      * Each route's distance is calculated and then evaluated via a fitness function.
-     * @param cities is a list of city which needs to be visited by the TS.
+     *  cities is a list of city which needs to be visited by the TS.
      *
      **/
     public Route(ArrayList<City> cities){
@@ -44,7 +44,33 @@ public class Route {
         return fitness;
     }
 
-    public int routeDistance(){
+    /**
+     * Method to calculate the total distance traveled by a salesman on his route, from one city to the next until he is
+     * back in the root city.
+     * @return the total distance of a route.
+     */
+    public double routeDistance(){
+
+        int routeLength = route.size();
+        double routeDistance = 0;
+        int currentPosition = 0;
+        int nextPosition = 1;
+
+        //until our 'nextPosition' points to the last city,
+        //We calculate the distance between where we are and where we will be next.
+        while(nextPosition<=routeLength-1){
+            City position = route.get(currentPosition);
+            City next = route.get(nextPosition);
+
+            routeDistance += position.getDistance(next);
+            currentPosition += 1;
+            nextPosition += 1;
+        }
+
+        //We now add distance which leads us back to the first visited city.
+        City current = route.get(currentPosition);
+        City firstCity = route.get(0);
+        routeDistance += current.getDistance(firstCity);
 
         return routeDistance;
     }
@@ -70,13 +96,11 @@ public class Route {
         // add it to our route
         // remove it from the copied list.
         while(!copyList.isEmpty()){
-
             int listLength = copyList.size();
             int random = rand.nextInt(listLength);
             City element = copyList.get(random);
             route.add(element);
             copyList.remove(random);
-
         }
 
         return route;

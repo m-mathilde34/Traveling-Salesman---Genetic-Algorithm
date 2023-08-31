@@ -13,6 +13,7 @@ public class RouteTest {
 
     @Test
     void testRouteCreation(){
+        //Creating our list of cities
         City city1 = new City(2, 3);
         City city2 = new City(6, 6);
         City city3 = new City(13, 9);
@@ -22,7 +23,6 @@ public class RouteTest {
         City city7 = new City(5, 11);
         City city8 = new City(10, 19);
         City city9 = new City(18, 7);
-
         ArrayList<City> cities = new ArrayList<>();
         cities.add(city1);
         cities.add(city2);
@@ -36,19 +36,51 @@ public class RouteTest {
 
         int originalSize = cities.size();
 
+        // Creating our test route
         Route path = new Route(cities);
 
+        //Evaluating
         int routeSize = path.route.size();
         int finalSize = cities.size();
 
         assertEquals(originalSize, finalSize); // checks original list has not been altered
         assertEquals(routeSize, originalSize); // checks that the route has the same length as the original list
+    }
 
+    @Test
+    void testRoute1CityDistance(){
+        //Creating our list of cities
+        City city1 = new City(2, 3);
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(city1);
 
+        //Creating our test route
+        Route route = new Route(cities);
+
+        //Evaluating
+        double distance = route.routeDistance;
+        assertEquals(0, distance);
     }
 
     @Test
     void testRouteDistance(){
+        //Creating our list of cities
+        City city1 = new City(2, 3);
+        City city2 = new City(6, 6);
+        City city3 = new City(4, 8);
+        City city4 = new City(5, 7);
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(city1);
+        cities.add(city2);
+        cities.add(city3);
+        cities.add(city4);
+
+        //Creating our test route
+        Route route = new Route(cities);
+
+        //Evaluating
+        double distance = route.routeDistance;
+        assertTrue(distance > 0);
 
     }
 
