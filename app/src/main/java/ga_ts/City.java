@@ -30,8 +30,8 @@ public class City {
         int x2 = city2.x_coordinate;
         int y2 = city2.y_coordinate;
 
-        double x_pow = Math.abs(Math.pow((x2-this.x_coordinate),2));
-        double y_pow = Math.abs(Math.pow((y2-this.y_coordinate),2));
+        double x_pow = Math.pow((x2-this.x_coordinate),2);
+        double y_pow = Math.pow((y2-this.y_coordinate),2);
 
         double distance = Math.sqrt(x_pow + y_pow);
 
