@@ -59,7 +59,7 @@ individual. This makes it possible to evaluate each potential solution.
 
 ## Creating a Genetic Algorithm to solve TSP
 
-###1. Creating our City Class
+###1. Creating our City Class (Genes)
 Our cities represent the genes of our future route chromosomes. Each of those cities has coordinates which allows us to
 place them in a space. Cities will therefore need the following attributes:
 - x_coordinate
@@ -69,4 +69,12 @@ Being able to calculate the distance between two cities will be central to our w
 therefore need a method (getDistance()) which will calculate the distance between two cities using the following
 formulea : d=√((x2 – x1)² + (y2 – y1)²).
 
-###2. Creating our Fitness
+###3. Creating our Routes (Chromosomes)
+Once we have our cities, we can start to create routes. Each of our routes will have a distance, which in turns is
+evaluated by our fitness function. Route will therefore need the following attributes:
+- ArrayList < City > route
+- routeDistance
+- fitness
+
+
+
