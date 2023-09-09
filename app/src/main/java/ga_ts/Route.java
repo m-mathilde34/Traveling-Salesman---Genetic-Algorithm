@@ -16,13 +16,35 @@ public class Route {
      * Constructor method which creates and initialise the object (the route).
      * From a list of cities, it randomly creates a route ensuring that there are no duplicate cities.
      * Each route's distance is calculated and then evaluated via a fitness function.
-     *  cities is a list of city which needs to be visited by the TS.
+     * @param cities is a list of city which needs to be visited by the TS.
      *
      **/
     public Route(ArrayList<City> cities){
         route = createRoute(cities);
         routeDistance = routeDistance();
         fitness = calculateFitnessHyperbole();
+    }
+
+    /**
+     * Setter method.
+     * Allows to set a chosen route for the purposes of testing other methods.
+     * @param route, a randomly created route.
+     *
+     */
+    public void setRoute(ArrayList<City> route){
+        this.route = route;
+        this.routeDistance = routeDistance();
+        this.fitness = calculateFitnessHyperbole();
+    }
+
+    /**
+     * Setter method.
+     *
+     * @param distance
+     */
+    public void setDistance(double distance){
+        this.routeDistance = distance;
+        this.calculateFitnessHyperbole();
     }
 
     /**
@@ -54,6 +76,7 @@ public class Route {
      * Method to calculate the total distance traveled by a salesman on his route, from one city to the next until he is
      * back in the root city.
      * @return the total distance of a route.
+     *
      */
     public double routeDistance(){
 
