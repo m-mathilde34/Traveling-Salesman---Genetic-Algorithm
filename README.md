@@ -69,12 +69,23 @@ Being able to calculate the distance between two cities will be central to our w
 therefore need a method (getDistance()) which will calculate the distance between two cities using the following
 formulea : d=√((x2 – x1)² + (y2 – y1)²).
 
-###3. Creating our Routes (Chromosomes)
-Once we have our cities, we can start to create routes. Each of our routes will have a distance, which in turns is
-evaluated by our fitness function. Route will therefore need the following attributes:
+###2. Creating our Routes (Chromosomes)
+Once we have our cities, we can start to create routes. Each of our routes will have a distance, which in turn is
+evaluated by our fitness function. Routes will therefore need the following attributes:
 - ArrayList < City > route
 - routeDistance
 - fitness
+
+For the fitness, there are a few options that we can use. For this project, three were tested:
+- Normal distribution
+- Sine function
+- Hyperbole distribution
+
+The Hyperbole distribution would mean that the greater the distance, the lower the fitness would be. Equally, the
+smallest the distance (and therefore the better!), the greater the fitness would be.
+
+The Normal distribution would give us a higher fitness value the smallest the distance is, and inversely a smaller
+fitness value the greater the distance is.
 
 
 

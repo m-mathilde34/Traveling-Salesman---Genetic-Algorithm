@@ -39,8 +39,8 @@ public class Route {
 
     /**
      * Setter method.
-     *
-     * @param distance
+     *Allows to set a chosen distance for the purposes of testing other methods.
+     * @param distance, the distance of a given route.
      */
     public void setDistance(double distance){
         this.routeDistance = distance;
@@ -54,12 +54,19 @@ public class Route {
      *
      **/
     public double calculateFitnessNormal(){
+        double a = 1; // a is the standard deviation
+        double b = 0; // b is the mean
+
+        //double exponential = -0.5 * Math.pow(((routeDistance-b)/a),2);
+
+        double function = (1/(a*Math.sqrt(2*Math.PI)))*Math.exp(-0.5 * Math.pow(((routeDistance-b)/a),2));
 
         return fitness;
     }
 
     /**
      * Another example of calculating fitness using the sine function instead.
+     *
      **/
     public double calculateFitnessSine(){
         return Math.sin(routeDistance);
@@ -67,6 +74,7 @@ public class Route {
 
     /**
      * Another example of calculating fitness using the hyperbole distribution function instead.
+     *
      **/
     public double calculateFitnessHyperbole(){
         return 1 / (routeDistance);

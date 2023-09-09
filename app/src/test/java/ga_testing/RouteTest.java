@@ -63,34 +63,57 @@ public class RouteTest {
     }
 
     @Test
+    /**
+     * Example route used for test on route distance:
+     *
+     * 4|
+     *  |
+     * 3|      A           B           C
+     *  |
+     * 2|
+     *  |
+     * 1|
+     *  |
+     * 0|_________________________________
+     * 0   1   2   3   4   5   6   7   8
+     *
+     * A(2,3), B(5,3),  C(8,3)
+     * Distance should be as follows:
+     * AB = 3
+     * BC = 3
+     * CA = 6
+     * Total = 12
+     */
     void testRouteDistance(){
         //Creating our list of cities
-        City city1 = new City(2, 3);
-        City city2 = new City(6, 6);
-        City city3 = new City(4, 8);
-        City city4 = new City(5, 7);
+        City cityA = new City(2,3);
+        City cityB = new City(5,3);
+        City cityC = new City(8,3);
         ArrayList<City> cities = new ArrayList<>();
-        cities.add(city1);
-        cities.add(city2);
-        cities.add(city3);
-        cities.add(city4);
+        cities.add(cityA);
+        cities.add(cityB);
+        cities.add(cityC);
 
-        //Creating our test route
+        //Creating our route
         Route route = new Route(cities);
+
+        //Manually setting our route for test purposes
+        route.setRoute(cities);
 
         //Evaluating
         double distance = route.routeDistance;
-        assertTrue(distance > 0);
+        assertEquals(12, distance);
+    }
+
+
+    @Test
+    void testRouteGoodFitnessHyperbole(){
+
 
     }
 
     @Test
-    void testRouteGoodFitness(){
-
-    }
-
-    @Test
-    void testRouteBadFitness(){
+    void testRouteBadFitnessHyperbole(){
 
     }
 
