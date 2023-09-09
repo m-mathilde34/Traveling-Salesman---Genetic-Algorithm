@@ -37,6 +37,7 @@ public class Route {
         this.fitness = calculateFitnessHyperbole();
     }
 
+
     /**
      * Setter method.
      *Allows to set a chosen distance for the purposes of testing other methods.
@@ -44,7 +45,12 @@ public class Route {
      */
     public void setDistance(double distance){
         this.routeDistance = distance;
-        this.calculateFitnessHyperbole();
+        this.fitness = calculateFitnessHyperbole();
+    }
+
+    public void setDistance2(double distance){
+        this.routeDistance = distance;
+        this.fitness = calculateFitnessNormal();
     }
 
     /**
@@ -57,9 +63,7 @@ public class Route {
         double a = 1; // a is the standard deviation
         double b = 0; // b is the mean
 
-        //double exponential = -0.5 * Math.pow(((routeDistance-b)/a),2);
-
-        double function = (1/(a*Math.sqrt(2*Math.PI)))*Math.exp(-0.5 * Math.pow(((routeDistance-b)/a),2));
+        double fitness = (1/(a*Math.sqrt(2*Math.PI)))*Math.pow(Math.E,(-0.5 * Math.pow(((routeDistance-b)/a),2)));
 
         return fitness;
     }

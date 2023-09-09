@@ -3,6 +3,8 @@ package ga_testing;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import ga_ts.City;
 import ga_ts.Route;
@@ -108,13 +110,88 @@ public class RouteTest {
 
     @Test
     void testRouteGoodFitnessHyperbole(){
+        //Creating our list of cities
+        City cityA = new City(2,3);
+        City cityB = new City(5,3);
+        City cityC = new City(8,3);
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(cityA);
+        cities.add(cityB);
+        cities.add(cityC);
 
+        //Creating our route
+        Route route = new Route(cities);
 
+        //Manually setting our distance to be low so our fitness should be high and good.
+        route.setDistance(4);
+
+        assertEquals(0.25, route.fitness);
     }
 
     @Test
     void testRouteBadFitnessHyperbole(){
+        //Creating our list of cities
+        City cityA = new City(2,3);
+        City cityB = new City(5,3);
+        City cityC = new City(8,3);
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(cityA);
+        cities.add(cityB);
+        cities.add(cityC);
 
+        //Creating our route
+        Route route = new Route(cities);
+
+        //Manually setting our distance to be low so our fitness should be high and good.
+        route.setDistance(200);
+
+        assertEquals(0.005, route.fitness);
+    }
+
+    @Test
+    void testRouteGoodFitnessNormal(){
+        //Creating our list of cities
+        City cityA = new City(2,3);
+        City cityB = new City(5,3);
+        City cityC = new City(8,3);
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(cityA);
+        cities.add(cityB);
+        cities.add(cityC);
+
+        //Creating our route
+        Route route = new Route(cities);
+
+        //Manually setting our distance to be low so our fitness should be high.
+        route.setDistance2(1);
+        //Rounding up our results to the 4th decimal place.
+        double fitness_raw = route.fitness;
+        BigDecimal bd = new BigDecimal(fitness_raw).setScale(4, RoundingMode.HALF_UP);
+
+        assertEquals(0.2420, bd.doubleValue());
+    }
+
+    @Test
+    void testRouteBadFitnessNormal(){
+        //Creating our list of cities
+        City cityA = new City(2,3);
+        City cityB = new City(5,3);
+        City cityC = new City(8,3);
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(cityA);
+        cities.add(cityB);
+        cities.add(cityC);
+
+        //Creating our route
+        Route route = new Route(cities);
+
+        //Manually setting our distance to be low so our fitness should be high.
+        route.setDistance2(20);
+        //Rounding up our results to the 4th decimal place.
+        double fitness_raw = route.fitness;
+        BigDecimal bd = new BigDecimal(fitness_raw).setScale(4, RoundingMode.HALF_UP);
+
+        assertEquals(0.0, bd.doubleValue());
     }
 
 }
