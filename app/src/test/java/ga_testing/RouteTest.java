@@ -64,7 +64,6 @@ public class RouteTest {
         assertEquals(0, distance);
     }
 
-    @Test
     /**
      * Example route used for test on route distance:
      *
@@ -86,6 +85,7 @@ public class RouteTest {
      * CA = 6
      * Total = 12
      */
+    @Test
     void testRouteDistance(){
         //Creating our list of cities
         City cityA = new City(2,3);
@@ -106,7 +106,6 @@ public class RouteTest {
         double distance = route.routeDistance;
         assertEquals(12, distance);
     }
-
 
     @Test
     void testRouteGoodFitnessHyperbole(){
