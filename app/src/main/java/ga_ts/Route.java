@@ -18,7 +18,7 @@ public class Route {
      * Each route's distance is calculated and then evaluated via a fitness function.
      * @param cities is a list of city which needs to be visited by the TS.
      *
-     **/
+     */
     public Route(ArrayList<City> cities){
         route = createRoute(cities);
         routeDistance = routeDistance();
@@ -37,17 +37,25 @@ public class Route {
         this.fitness = calculateFitnessHyperbole();
     }
 
-
     /**
      * Setter method.
-     *Allows to set a chosen distance for the purposes of testing other methods.
+     * Allows to set a chosen distance for the purposes of testing other methods.
+     * This uses Hyperbolic distribution to calculate the fitness level of a route.
      * @param distance, the distance of a given route.
+     *
      */
     public void setDistance(double distance){
         this.routeDistance = distance;
         this.fitness = calculateFitnessHyperbole();
     }
 
+    /**
+     * Setter method.
+     * Allows to set a chosen distance for the purposes of testing other methods.
+     * This uses Normal Distribution to calculate the fitness level of a route.
+     * @param distance, the distance of a given route.
+     *
+     */
     public void setDistance2(double distance){
         this.routeDistance = distance;
         this.fitness = calculateFitnessNormal();
@@ -58,20 +66,19 @@ public class Route {
      * Normal distribution is used as the function to evaluate our route.
      * @return fitness
      *
-     **/
+     */
     public double calculateFitnessNormal(){
         double a = 1; // a is the standard deviation
         double b = 0; // b is the mean
 
         double fitness = (1/(a*Math.sqrt(2*Math.PI)))*Math.pow(Math.E,(-0.5 * Math.pow(((routeDistance-b)/a),2)));
-
         return fitness;
     }
 
     /**
      * Another example of calculating fitness using the sine function instead.
      *
-     **/
+     */
     public double calculateFitnessSine(){
         return Math.sin(routeDistance);
     }
@@ -79,7 +86,7 @@ public class Route {
     /**
      * Another example of calculating fitness using the hyperbole distribution function instead.
      *
-     **/
+     */
     public double calculateFitnessHyperbole(){
         return 1 / (routeDistance);
     }
@@ -119,10 +126,10 @@ public class Route {
     /**
      * Method creating a route between cities.
      * It makes a copy of our list of cities and randomly picks a city to add to our new route. It then removes it
-     * from the copied cities list. This ensures that there are no duplicate cities in our route.     *
-     * @return route, which is an ArrayList with each city in a random order and accounted for only once.
+     * from the copied cities list. This ensures that there are no duplicate cities in our route.
+     * @return an ArrayList with each city in a random order and accounted for only once.
      *
-     **/
+     */
     public ArrayList<City> createRoute(ArrayList<City> cities){
         //Copy our cities list
         ArrayList<City> copyList = new ArrayList<>();
@@ -143,7 +150,6 @@ public class Route {
             route.add(element);
             copyList.remove(random);
         }
-
         return route;
     }
 
