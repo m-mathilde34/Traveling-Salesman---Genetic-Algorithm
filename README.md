@@ -76,7 +76,12 @@ evaluated by our fitness function. Routes will therefore need the following attr
 - routeDistance
 - fitness
 
-For the fitness, there are a few options that we can use. For this project, three were tested:
+##### Evaluating each individual (route) using a fitness function:
+Choosing a fitness function is a really important step in creating a GA as it will influence reproduction. 'Survival of
+the fittest' implies that individuals with better fitness have a higher chance of reproducing and passing
+down their genetics.
+Using and playing around with different fitness functions allows us to compare their results and suitability. For this
+project, three fitness options were explored and tested.
 - Normal distribution
 - Sine function
 - Hyperbole distribution
@@ -84,8 +89,10 @@ For the fitness, there are a few options that we can use. For this project, thre
 The Hyperbole distribution would mean that the greater the distance, the lower the fitness would be. Equally, the
 smallest the distance (and therefore the better!), the greater the fitness would be.
 
-The Normal distribution would give us a higher fitness value the smallest the distance is, and inversely a smaller
-fitness value the greater the distance is.
+The Normal distribution on the other hand would give us a higher fitness value the smallest the distance is, and
+inversely a smaller fitness value the greater the distance is.
+
+###3. Creating our Population
 
 
 

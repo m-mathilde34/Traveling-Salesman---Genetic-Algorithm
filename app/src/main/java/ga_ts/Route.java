@@ -98,7 +98,6 @@ public class Route {
      *
      */
     public double routeDistance(){
-
         int routeLength = route.size();
         double routeDistance = 0;
         int currentPosition = 0;
