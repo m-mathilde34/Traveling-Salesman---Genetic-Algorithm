@@ -2,7 +2,6 @@ package ga_ts;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Population {
 
