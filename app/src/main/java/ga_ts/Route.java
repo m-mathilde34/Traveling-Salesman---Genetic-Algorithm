@@ -76,14 +76,6 @@ public class Route {
     }
 
     /**
-     * Another example of calculating fitness using the sine function instead.
-     *
-     */
-    public double calculateFitnessSine(){
-        return Math.sin(routeDistance);
-    }
-
-    /**
      * Another example of calculating fitness using the hyperbole distribution function instead.
      *
      */
