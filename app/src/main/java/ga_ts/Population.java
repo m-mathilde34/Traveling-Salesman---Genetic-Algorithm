@@ -8,7 +8,7 @@ public class Population {
     public ArrayList<Route> routes;
     public double averageFitness;
     public double highestFitness;
-    public int popSize = 20;
+    public int popSize;
 
     /**
      * Constructor method which creates and initialise the object (the population).
@@ -18,9 +18,36 @@ public class Population {
      *
      */
     public Population(ArrayList<City> cities) {
+        popSize = 100;
         routes = createRoutesList(cities);
         averageFitness = calculateAverageFitness();
         highestFitness = findHighestFitness();
+    }
+
+    /**
+     * Alternate Constructor.
+     * Allows us to set the size of our population in order to test other methods.
+     * @param populationSize, an int representing how many individuals our population has.
+     */
+    public Population(ArrayList<City> cities, int populationSize){
+        popSize = populationSize;
+        routes = createRoutesList(cities);
+        averageFitness = calculateAverageFitness();
+        highestFitness = findHighestFitness();
+    }
+
+    /**
+     * Setter method.
+     * Allows us to manually change the fitness of our routes in order to test that further methods are working as
+     * expected.
+     * @param route, a randomly created ArrayList of cities.
+     * @param fitness, a double, our chosen fitness value.
+     *
+     */
+    public void changeFitness(Route route, double fitness){
+        route.setFitness(fitness);
+        this.highestFitness = findHighestFitness();
+        this.averageFitness = calculateAverageFitness();
     }
 
     /**
