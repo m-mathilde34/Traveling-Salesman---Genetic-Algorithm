@@ -11,13 +11,23 @@ public class Selection {
     public ArrayList<Route> pool;
     public Route fittestIndividual;
 
-
+    /**
+     * Constructor method.
+     * It applies the tournament selection process by creating a pool of size k with k random individuals from our
+     * population.
+     * @param pop, a population to which we apply the Selection process.
+     */
     public Selection(Population pop){
         this.k = 40;
         pool = createTournamentPool(pop);
         fittestIndividual = getFittestIndividual();
     }
 
+    /**
+     * Create a matting pool from which to select our Parent individual.
+     * @param pop, the population from which selection is made.
+     * @return mattingPool, an ArrayList<Route> representing our matting pool of size k.
+     */
     public ArrayList<Route> createTournamentPool(Population pop){
         //Copy our population list
         ArrayList<Route> copyList = new ArrayList<>();
