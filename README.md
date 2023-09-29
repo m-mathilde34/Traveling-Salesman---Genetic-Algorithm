@@ -105,4 +105,22 @@ population is evolving and should (hopefully!) show an increasingly good fitness
 
 ### 4. Selection
 Selection is the first step of the reproductive process of our GA. It consists in selecting two individuals (the
-parents) which will reproduce to produce an offspring (the child). 
+parents) which will reproduce to make an offspring (the child). This can be achieved through a few different
+options such as Roulette Wheel Selection, and Tournament Selection, among others.
+
+#### Tournament Selection:
+This selection method is quite simple and consist of the following steps:
+- select a number k which will be the matting pool size
+- randomly select k individuals from our population to add to the matting pool
+- the parent will be the fittest individual in the pool
+
+The number k can be experimented with to see how it influences the GA and carefully selected for best results.
+
+![alt text](https://miro.medium.com/v2/resize:fit:720/format:webp/1*J-nD4gOPCVPXF0QoeWIhBA.png)
+(image found at : https://medium.com/@AnasBrital98/genetic-algorithm-explained-76dfbc5de85d)
+
+#### Roulette Wheel Selection:
+
+
+
+

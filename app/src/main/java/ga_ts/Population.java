@@ -13,7 +13,7 @@ public class Population {
     /**
      * Constructor method which creates and initialise the object (the population).
      * It randomly creates routes to create a population.
-     * The population is made of 20 individuals (popSize).
+     * The population is made of 100 individuals (popSize).
      * Each population has a maximum fitness as well as an average fitness.
      *
      */
