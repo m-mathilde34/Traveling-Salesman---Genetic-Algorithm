@@ -104,4 +104,5 @@ Fitness Level, and the Highest Fitness Level of a generation. This would give us
 population is evolving and should (hopefully!) show an increasingly good fitness value over time.
 
 ### 4. Selection
-
+Selection is the first step of the reproductive process of our GA. It consists in selecting two individuals (the
+parents) which will reproduce to produce an offspring (the child). 
