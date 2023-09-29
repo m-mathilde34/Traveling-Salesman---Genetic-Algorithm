@@ -74,7 +74,7 @@ public class Selection {
         //This only stop the one specific iteration of an individual to be added more than once
         int counter = 0;
         while(counter < k){
-            int random = rand.nextInt(pop.popSize);
+            int random = rand.nextInt(copyList.size());
             mattingPool.add(copyList.get(random));
             copyList.remove(random);
             counter += 1;

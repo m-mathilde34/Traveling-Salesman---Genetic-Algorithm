@@ -15,10 +15,49 @@ public class SelectionTest {
     @Test
     void testCreateTournamentPool(){
 
-        // Create our pop
-        // Check size of pool is equal to our k that we choose
-        //
+        //Creating our list of cities
+        City city1 = new City(2, 3);
+        City city2 = new City(6, 6);
+        City city3 = new City(13, 9);
+        City city4 = new City(20, 12);
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(city1);
+        cities.add(city2);
+        cities.add(city3);
+        cities.add(city4);
 
+        //Creating our population
+        Population pop = new Population(cities);
+
+        //Applying selection
+        Selection select = new Selection(pop);
+
+        //Check that the matting pool is the same size as k
+        assertEquals(40, select.pool.size());
+    }
+
+    @Test
+    void testCreateTournamentPoolManualK(){
+
+        //Creating our list of cities
+        City city1 = new City(2, 3);
+        City city2 = new City(6, 6);
+        City city3 = new City(13, 9);
+        City city4 = new City(20, 12);
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(city1);
+        cities.add(city2);
+        cities.add(city3);
+        cities.add(city4);
+
+        //Creating our population
+        Population pop = new Population(cities);
+
+        //Applying selection
+        Selection select = new Selection(pop, 16);
+
+        //Check that the matting pool is the same size as k
+        assertEquals(16, select.pool.size());
     }
 
     @Test
