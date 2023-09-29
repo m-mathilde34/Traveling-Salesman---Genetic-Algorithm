@@ -16,6 +16,7 @@ public class Selection {
      * It applies the tournament selection process by creating a pool of size k with k random individuals from our
      * population.
      * @param pop, a population to which we apply the Selection process.
+     *
      */
     public Selection(Population pop){
         this.k = 40;
@@ -24,9 +25,38 @@ public class Selection {
     }
 
     /**
+     * Alternative constructor
+     * @param pop, a population to which we apply the Selection process.
+     * @param k, our pool size
+     *
+     */
+    public Selection(Population pop, int k){
+        this.k = k;
+        pool = createTournamentPool(pop);
+        fittestIndividual = getFittestIndividual();
+    }
+
+    /**
+     * Setter method.
+     * Allows us to manually change the fitness of our routes in order to test that further methods are working as
+     * expected.
+     * @param population, the population of routes we are working with
+     * @param route, the route we want to change the fitness of
+     * @param fitness, the new value we want to give to our route
+     *
+     */
+    public void changeFitness(Population population, Route route, double fitness){
+        int routeIndex = population.routes.indexOf(route);
+        population.routes.get(routeIndex).setFitness(fitness);
+        route.setFitness(fitness);
+        this.fittestIndividual = getFittestIndividual();
+    }
+
+    /**
      * Create a matting pool from which to select our Parent individual.
      * @param pop, the population from which selection is made.
      * @return mattingPool, an ArrayList<Route> representing our matting pool of size k.
+     *
      */
     public ArrayList<Route> createTournamentPool(Population pop){
         //Copy our population list
@@ -76,5 +106,6 @@ public class Selection {
 
         return fittestIndividual;
     }
+
 
 }
