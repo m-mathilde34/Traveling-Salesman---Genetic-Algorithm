@@ -81,9 +81,8 @@ Choosing a fitness function is a really important step in creating a GA as it wi
 the fittest' implies that individuals with better fitness have a higher chance of reproducing and passing
 down their genetics.
 Using and playing around with different fitness functions allows us to compare their results and suitability. For this
-project, three fitness options were explored and tested.
+project, two fitness options were explored and tested.
 - Normal distribution
-- Sine function
 - Hyperbole distribution
 
 The Hyperbole distribution would mean that the greater the distance, the lower the fitness would be. Equally, the
@@ -93,6 +92,16 @@ The Normal distribution on the other hand would give us a higher fitness value t
 inversely a smaller fitness value the greater the distance is.
 
 ### 3. Creating our Population
+Once both our genes and chromosomes have been created, creating our population is straight forward. A population, as
+we have seen, is a collection of a certain number of individuals. Therefore, our population will need to have the
+following:
+- ArrayList < Route > routes
+- populationSize
 
+On top of this, some metrics allowing us to measure and keep an eye on the progress of fitness levels during each
+generation could be desirable. To do so, we could add two attributes which would calculate respectively the Average
+Fitness Level, and the Highest Fitness Level of a generation. This would give us an interesting insight as to how our
+population is evolving and should (hopefully!) show an increasingly good fitness value over time.
 
+### 4. Selection
 

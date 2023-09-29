@@ -62,6 +62,16 @@ public class Route {
     }
 
     /**
+     * Setter method.
+     * Allows to manually set our fitness for testing purposes.
+     * @param fitness, a chosen double which will be our new fitness value.
+     *
+     */
+    public void setFitness(double fitness){
+        this.fitness = fitness;
+    }
+
+    /**
      * Evaluate how good or bad the quality of a route is and returns a measure of it.
      * Normal distribution is used as the function to evaluate our route.
      * @return fitness
@@ -73,14 +83,6 @@ public class Route {
 
         double fitness = (1/(a*Math.sqrt(2*Math.PI)))*Math.pow(Math.E,(-0.5 * Math.pow(((routeDistance-b)/a),2)));
         return fitness;
-    }
-
-    /**
-     * Another example of calculating fitness using the sine function instead.
-     *
-     */
-    public double calculateFitnessSine(){
-        return Math.sin(routeDistance);
     }
 
     /**
