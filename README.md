@@ -106,7 +106,8 @@ population is evolving and should (hopefully!) show an increasingly good fitness
 ### 4. Selection
 Selection is the first step of the reproductive process of our GA. It consists in selecting two individuals (the
 parents) which will reproduce to make an offspring (the child). This can be achieved through a few different
-options such as Roulette Wheel Selection, and Tournament Selection, among others.
+options such as Roulette Wheel Selection, and Tournament Selection, among others. Below you can find the descriptions
+for both selection method, however in our case I chose to implement selection using the tournament selection.
 
 #### Tournament Selection:
 This selection method is quite simple and consist of the following steps:
@@ -120,6 +121,12 @@ The number k can be experimented with to see how it influences the GA and carefu
 (image found at : https://medium.com/@AnasBrital98/genetic-algorithm-explained-76dfbc5de85d)
 
 #### Roulette Wheel Selection:
+This selection method slightly differs from the previous one. In this one, each individual is part of the pool or rather
+roulette. The fitness of an individual determines how big of a wedge it gets (and therefore how probably it is going to
+be picked). The higher better the fitness, the more chance it has of being selected as a parent.
+
+![alt text](https://miro.medium.com/v2/resize:fit:720/format:webp/1*ipy1op0xYjHQ_G1IEqzG2g.png)
+(image found at : https://medium.com/@AnasBrital98/genetic-algorithm-explained-76dfbc5de85d)
 
 
 
