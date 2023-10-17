@@ -22,7 +22,7 @@ public class Route {
     public Route(ArrayList<City> cities){
         route = createRoute(cities);
         routeDistance = routeDistance();
-        fitness = calculateFitnessNormal();
+        fitness = calculateFitnessHyperbole();
     }
 
     /**
