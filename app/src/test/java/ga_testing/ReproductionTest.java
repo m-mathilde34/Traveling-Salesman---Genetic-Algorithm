@@ -11,23 +11,7 @@ import java.util.ArrayList;
 public class ReproductionTest {
 
     @Test
-    void testSubsectionLengthGen2(){
-
-    }
-
-    @Test
-    void testSubsectionLengthGen250(){
-
-    }
-
-    @Test
-    void testSubsectionLengthGen620(){
-
-    }
-
-    @Test
     void testGetChild(){
-
         //Creating our list of cities
         City city1 = new City(2, 3);
         City city2 = new City(6, 6);
@@ -56,16 +40,13 @@ public class ReproductionTest {
         Selection selection1 = new Selection(pop);
         Selection selection2 = new Selection(pop);
 
+        //Applying reproduction
         Reproduction reproduction = new Reproduction(selection1.fittestIndividual, selection2.fittestIndividual);
 
-        //assertEquals(parent_1.route.size(), reproduction.child.route.size());
-
+        //Testing that our child is of the same length as its parent
+        Route child = reproduction.child;
+        int childLength = child.route.size();
+        assertEquals(childLength, selection1.fittestIndividual.route.size());
     }
-
-    @Test
-    void getChild_SetSubsectionLength(){
-
-    }
-
 
 }
