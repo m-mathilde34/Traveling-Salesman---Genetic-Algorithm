@@ -147,5 +147,7 @@ any gene.
 
 The size and place of the subset taken from parent 1 is random and can change for each reproduction step.
 
+### 6. Mutation
+
 
 
