@@ -3,12 +3,10 @@ package ga_testing;
 import ga_ts.Route;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import ga_ts.City;
 import ga_ts.Population;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PopulationTest {
