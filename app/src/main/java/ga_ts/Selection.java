@@ -95,7 +95,7 @@ public class Selection {
         int counter = 0;
         double max_fitness = 0;
 
-        while(counter < k){
+        while(counter < pool.size()){
             route = pool.get(counter);
             if(route.fitness > max_fitness){
                 max_fitness = route.fitness;

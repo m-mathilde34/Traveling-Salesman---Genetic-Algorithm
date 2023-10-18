@@ -86,10 +86,16 @@ project, two fitness options were explored and tested.
 - Hyperbole distribution
 
 The Hyperbole distribution would mean that the greater the distance, the lower the fitness would be. Equally, the
-smallest the distance (and therefore the better!), the greater the fitness would be.
+smallest the distance (and therefore the better!), the greater the fitness would be. This is the easiest and most
+straight forward option
 
 The Normal distribution on the other hand would give us a higher fitness value the smallest the distance is, and
-inversely a smaller fitness value the greater the distance is.
+inversely a smaller fitness value the greater the distance is. It is however trickier to use and needs to be adapted
+to the problem's scope as, as it stands, the fitness values quickly plummet to 0, hindering the selection process and so
+on. Parameters would therefore need to be tuned depending on the amount of cities and the size of the distances given
+to us in a dataset.
+
+Whilst both were experimented with, the Hyperbole function was ultimately the one chosen to head further into this GA.
 
 ### 3. Creating our Population
 Once both our genes and chromosomes have been created, creating our population is straight forward. A population, as
@@ -128,6 +134,20 @@ be picked). The higher better the fitness, the more chance it has of being selec
 ![alt text](https://miro.medium.com/v2/resize:fit:720/format:webp/1*ipy1op0xYjHQ_G1IEqzG2g.png)
 (image found at : https://medium.com/@AnasBrital98/genetic-algorithm-explained-76dfbc5de85d)
 
+### 5. Reproduction
+Once our parents are chosen in the Selection process, these need to be bred so that a child may be born. To do so, a
+variety of crossover methods exist such as '_One Point Crossover_', '_Multi Point Crossover_, '_Uniform Crossover_',
+and so on.
+
+The TSP however is a unique problem which states that each city must be visited once and only once. Therefore, using
+_Ordered Crossover_ is the best solution for us as it ensures none of the genes are repeated :
+- Firstly, a random subset is selected from parent 1 and put into the child.
+- Then, we fill what is left with the genes of parent 2, in the order in which they appear, taking care not to duplicate
+any gene.
+
+The size and place of the subset taken from parent 1 is random and can change for each reproduction step.
+
+### 6. Mutation
 
 
 
