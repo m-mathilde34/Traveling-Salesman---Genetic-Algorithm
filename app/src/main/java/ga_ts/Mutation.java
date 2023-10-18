@@ -1,5 +1,6 @@
 package ga_ts;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Mutation {
@@ -13,13 +14,13 @@ public class Mutation {
      *
      */
     public Mutation(Route child){
-        this.mutatedChild = applyMutation(child);
         this.mutationProbability = 0.15f;
+        this.mutatedChild = applyMutation(child);
     }
 
     public Mutation(Route child, float mutationProbability){
-        this.mutatedChild = applyMutation(child);
         this.mutationProbability = mutationProbability;
+        this.mutatedChild = applyMutation(child);
     }
 
     /**
@@ -28,6 +29,13 @@ public class Mutation {
      * @return mutatedChild, the Route child after mutation has been applied.
      */
     public Route applyMutation(Route child){
+        ArrayList<City> childCopy = new ArrayList<>();
+        childCopy.addAll(child.route);
+
+        Route childRouteCopy = new Route(childCopy);
+        childRouteCopy.setRoute(childCopy);
+
+
         //Get a float between 0.0 and 1.0.
         Random rand = new Random();
         float probability = rand.nextFloat();
@@ -52,9 +60,9 @@ public class Mutation {
         City city2 = child.route.get(indexGene2);
 
         //We swap around the place of two cities
-        child.route.set(indexGene1, city2);
-        child.route.set(indexGene2, city1);
+        childRouteCopy.route.set(indexGene1, city2);
+        childRouteCopy.route.set(indexGene2, city1);
 
-        return child;
+        return childRouteCopy;
     }
 }
