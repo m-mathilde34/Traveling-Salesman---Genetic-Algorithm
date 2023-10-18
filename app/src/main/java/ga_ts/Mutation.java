@@ -14,7 +14,7 @@ public class Mutation {
      *
      */
     public Mutation(Route child){
-        this.mutationProbability = 0.15f;
+        this.mutationProbability = 0.10f;
         this.mutatedChild = applyMutation(child);
     }
 
