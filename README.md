@@ -150,7 +150,7 @@ The size and place of the subset taken from parent 1 is random and can change fo
 ### 6. Mutation
 Mutation introduces an element of chance into the evolution of a population. It can sometimes be beneficial, but it
 can also be detrimental and later affect the fitness of an individual (and therefore its survival). In any case it helps
-contribute to diversity in the population and can introduce new (or reintroduce) attributes.
+contribute to diversity in the population and can introduce new (or reintroduce lost) attributes.
 
 Although there are diverse ways of applying mutation to a problem, we must follow the TSP rules and account for every
 city on our route once and only once. A few options present themselves to us:
