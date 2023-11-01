@@ -148,6 +148,20 @@ any gene.
 The size and place of the subset taken from parent 1 is random and can change for each reproduction step.
 
 ### 6. Mutation
+Mutation introduces an element of chance into the evolution of a population. It can sometimes be beneficial, but it
+can also be detrimental and later affect the fitness of an individual (and therefore its survival). In any case it helps
+contribute to diversity in the population and can introduce new (or reintroduce lost) attributes.
 
+Although there are diverse ways of applying mutation to a problem, we must follow the TSP rules and account for every
+city on our route once and only once. A few options present themselves to us:
+- _Swap Mutation_ : we select two distinct genes and swap them around.
+- _Inversion Mutation_ : we select a random subsection in our child and reverse the order of it.
+- _Scramble Mutation_ : we select a random subsection in our child and interchange the values.
+
+In this example we are using Swap Mutation.
+
+Mutation however, does not occur every single time during the reproduction process. In this example we set the
+probability of a mutation occurring to 10%. The mutation probability is something that needs to be experimented with to
+see how the evolution is impacted depending on the value it is given.
 
 
