@@ -2,6 +2,7 @@ package ga_ts;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CityGenerator {
 
@@ -46,7 +47,11 @@ public class CityGenerator {
      *
      */
     public City generateNewCity(){
+        Random rand = new Random();
+        int randomX = rand.nextInt(minValue, maxValue+1);
+        int randomY = rand.nextInt(minValue, maxValue+1);
 
+        City city = new City(randomX, randomY);
         return city;
     }
 }
