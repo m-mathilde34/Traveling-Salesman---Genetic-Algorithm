@@ -1,8 +1,11 @@
 package ga_ts;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.FileWriter;
 
 public class CityGenerator {
 
@@ -54,4 +57,37 @@ public class CityGenerator {
         City city = new City(randomX, randomY);
         return city;
     }
+
+    /**
+     * Method to write our ArrayList of newly generated cities to a .csv file. This avoids us having to keep generating
+     * different lists of cities. It also helps to test methods.
+     * @throws IOException
+     *
+     */
+    public void writeToCSVFile() throws IOException {
+        File csvFile = new File("cities.csv");
+        FileWriter fileCSVWriter = new FileWriter(csvFile);
+
+        int counter = 0;
+        for(int i=0; i<generatedCities.size(); i++){
+            City city = generatedCities.get(i);
+
+            //Make city coordinates into strings as CSV takes strings
+            String city_x = Integer.toString(city.x_coordinate);
+            String city_y = Integer.toString(city.y_coordinate);
+
+            //Write to file and go to next line so that each city has its own line
+            fileCSVWriter.write(city_x);
+            fileCSVWriter.write(city_y);
+            fileCSVWriter.write(System.getProperty("line.separator"));
+
+            counter++;
+        }
+
+        fileCSVWriter.close();
+    }
+
+    //Read method
+
+    //Save method
 }
