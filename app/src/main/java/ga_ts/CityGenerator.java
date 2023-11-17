@@ -34,12 +34,38 @@ public class CityGenerator {
     /**
      * Creates a random list of cityNumber cities. Each city's x and y value is set between minValue and maxValue.
      * Each city has to be positioned with a minimum distance between previously created cities, following the
-     * minDistanceRadius.
+     * minDistance.
      * @return generatedCities, an ArrayList of cities.
      *
      */
     public ArrayList<City> generateListOfCities(){
         ArrayList<City> generatedCities = new ArrayList<>();
+
+        int counter=0;
+
+        //Keep adding new cities to the list until we have the required number of cities.
+        while(counter < cityNumber){
+
+            //Generate a new City
+            City newCity = generateNewCity();
+
+            //Check the minimum distance between cities is respected
+            boolean status = checkMinDistance(newCity);
+
+            //If it is, add it to the list
+            if(status == true){
+                generatedCities.add(newCity);
+            }
+            else{
+                while(status == false){     //If it isn't keep generating a new city until the min distance is respected
+                    newCity = generateNewCity();
+                    status = checkMinDistance(newCity);
+                }
+                generatedCities.add(newCity);   //Then add it to the list
+            }
+
+            counter++;
+        }
 
         return generatedCities;
     }
