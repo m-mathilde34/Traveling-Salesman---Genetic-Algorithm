@@ -41,6 +41,10 @@ public class CityGenerator {
     public ArrayList<City> generateListOfCities(){
         ArrayList<City> generatedCities = new ArrayList<>();
 
+        if (this.cityNumber == 0) {
+            return generatedCities;
+        }
+
         //Add a first city to the list
         City firstCity = generateNewCity();
         generatedCities.add(firstCity);
@@ -49,6 +53,9 @@ public class CityGenerator {
 
         //Keep adding new cities to the list until we have the required number of cities.
         while(counter < cityNumber){
+
+            int tries = 20;
+            int startTry = 0;
 
             //Generate a new City
             City newCity = generateNewCity();
@@ -60,12 +67,20 @@ public class CityGenerator {
             if(status == true){
                 generatedCities.add(newCity);
             }
-            else{
-                while(status == false){     //If it isn't keep generating a new city until the min distance is respected
+            else {
+                //If it isn't, try x number of times to create a compatible one before moving on
+                while (startTry < tries && status == false) {
                     newCity = generateNewCity();
                     status = checkMinDistance(generatedCities, newCity);
+                    startTry++;
                 }
-                generatedCities.add(newCity);   //Then add it to the list
+                //if status has changed, then it means the new city can be added to the list
+                if (status == true) {
+                    generatedCities.add(newCity);
+                }
+                else{
+                    this.cityNumber--;
+                }
             }
 
             counter++;
