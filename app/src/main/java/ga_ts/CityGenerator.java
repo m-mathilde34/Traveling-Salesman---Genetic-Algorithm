@@ -12,7 +12,7 @@ public class CityGenerator {
     public int cityNumber;
     public int minValue;
     public int maxValue;
-    public double minDistanceRadius;
+    public double minDistance;
     public ArrayList<City> generatedCities;
 
     /**
@@ -21,13 +21,13 @@ public class CityGenerator {
      * @param cityNumber, the number of city to be created by our generator.
      * @param minValue, the minimum value for our x and y values.
      * @param maxValue, the maximum value for our x and y values.
-     * @param minDistanceRadius, the minimum distance between each city.
+     * @param minDistance, the minimum distance between each city.
      */
-    public CityGenerator(int cityNumber, int minValue, int maxValue, double minDistanceRadius){
+    public CityGenerator(int cityNumber, int minValue, int maxValue, double minDistance){
         this.cityNumber = cityNumber;
         this.minValue = minValue;
         this.maxValue = maxValue;
-        this.minDistanceRadius = minDistanceRadius;
+        this.minDistance = minDistance;
         generatedCities = generateListOfCities();
     }
 
@@ -42,6 +42,26 @@ public class CityGenerator {
         ArrayList<City> generatedCities = new ArrayList<>();
 
         return generatedCities;
+    }
+
+    /**
+     * Method accessing ArrayList<City> generatedCities and checking that the newly created city newcity is at an
+     * acceptable distance from all other cities in the list.
+     * @param newCity, a newly created city
+     * @return True/False. True means the newCity can be added to the list, False means that it is too close to another
+     * city and cannot be added to the list.
+     *
+     */
+    public boolean checkMinDistance(City newCity){
+        int counter=0;
+        while(counter<generatedCities.size()){
+            City cityToCheck = generatedCities.get(counter);
+            if(cityToCheck.getDistance(newCity) < minDistance){
+                return false;
+            }
+            counter++;
+        }
+        return true;
     }
 
     /**
