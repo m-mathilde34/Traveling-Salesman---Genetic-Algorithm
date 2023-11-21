@@ -1,18 +1,15 @@
 package ga_ts;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Array;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
-import java.io.FileWriter;
 
 public class CityGenerator {
 
     public int cityNumber;
-    public int minValue;
-    public int maxValue;
-    public double minDistance;
+    private int minValue;
+    private int maxValue;
+    private double minDistance;
     public ArrayList<City> generatedCities;
 
     /**
@@ -22,13 +19,30 @@ public class CityGenerator {
      * @param minValue, the minimum value for our x and y values.
      * @param maxValue, the maximum value for our x and y values.
      * @param minDistance, the minimum distance between each city.
+     *
      */
-    public CityGenerator(int cityNumber, int minValue, int maxValue, double minDistance){
+    public CityGenerator(int cityNumber, int minValue, int maxValue, double minDistance, boolean writeToFile){
         this.cityNumber = cityNumber;
         this.minValue = minValue;
         this.maxValue = maxValue;
         this.minDistance = minDistance;
         generatedCities = generateListOfCities();
+        if(writeToFile){writeToCSVFile();}
+    }
+
+    /**
+     * Alternate Constructor allowing us to read data from a CSV File.
+     * This allows us to work with an already created CSV file and converts the data in the CSV File into an ArrayList
+     * of cities.
+     * @param filename, the name of the file containing our cities' coordinates.
+     *
+     */
+    public CityGenerator(String filename){
+        generatedCities = readCSVFile(filename);
+        this.cityNumber = generatedCities.size();
+        this.minDistance = 0.0;
+        this.maxValue = 0;
+        this.minValue = 0;
     }
 
     /**
@@ -126,33 +140,66 @@ public class CityGenerator {
     /**
      * Method to write our ArrayList of newly generated cities to a .csv file. This avoids us having to keep generating
      * different lists of cities. It also helps to test methods.
-     * @throws IOException
      *
      */
-    public void writeToCSVFile() throws IOException {
+    public void writeToCSVFile(){
         File csvFile = new File("cities.csv");
-        FileWriter fileCSVWriter = new FileWriter(csvFile);
+        try(FileWriter fileCSVWriter = new FileWriter(csvFile)) {
 
-        int counter = 0;
-        for(int i=0; i<generatedCities.size(); i++){
-            City city = generatedCities.get(i);
-
-            //Make city coordinates into strings as CSV takes strings
-            String city_x = Integer.toString(city.x_coordinate);
-            String city_y = Integer.toString(city.y_coordinate);
-
-            //Write to file and go to next line so that each city has its own line
-            fileCSVWriter.write(city_x);
-            fileCSVWriter.write(city_y);
+            //Create a header
+            fileCSVWriter.write("x,y");
             fileCSVWriter.write(System.getProperty("line.separator"));
 
-            counter++;
-        }
+            int counter = 0;
+            for (int i = 0; i < generatedCities.size(); i++) {
+                City city = generatedCities.get(i);
 
-        fileCSVWriter.close();
+                //Make city coordinates into strings as CSV takes strings
+                String city_x = Integer.toString(city.x_coordinate);
+                String city_y = Integer.toString(city.y_coordinate);
+
+                //Write to file and go to next line so that each city has its own line
+                fileCSVWriter.write(city_x + "," + city_y);
+                fileCSVWriter.write(System.getProperty("line.separator"));
+
+                counter++;
+            }
+
+            fileCSVWriter.close();
+        } catch(IOException e){
+            System.out.println("Error Occurred Writing To File! :( " + e.getMessage());
+        }
     }
 
     //Read method
 
-    //Save method
+    /**
+     * Method to read a list of cities from a .csv file. This allows us to keep working on the same list of generated
+     * cities. Line by line it reads the x and y coordinates of a city and creates a City object with it before adding
+     * it to our ArrayList<City> generatedCities.
+     * @param filename, the file containing our list of cities' coordinates.
+     * @return citiesOnFile, an ArrayList<City>.
+     *
+     */
+    public ArrayList<City> readCSVFile(String filename){
+        ArrayList<City> citiesOnFile = new ArrayList<>();
+
+        try(BufferedReader br = new BufferedReader(new FileReader(filename))){
+            String line;
+            line = br.readLine();
+            while((line= br.readLine()) != null){
+                String[] values = line.split(",");
+                City city = new City(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
+                citiesOnFile.add(city);
+            }
+
+            br.close();
+
+        } catch(IOException e){
+            System.out.println("Error Occurred Reading From File! :'( "+ e.getMessage());
+        }
+
+        return citiesOnFile;
+    }
+
 }
