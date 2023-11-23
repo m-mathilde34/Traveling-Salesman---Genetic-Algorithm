@@ -22,6 +22,9 @@ dependencies {
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
+
+    // OpenCSV is used by the application.
+    implementation("com.opencsv:opencsv:5.5.1")
 }
 
 application {

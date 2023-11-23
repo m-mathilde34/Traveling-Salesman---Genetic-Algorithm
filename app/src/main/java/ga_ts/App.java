@@ -11,4 +11,15 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
     }
+
+    // function reading from a file to create cities
+
+    // create a generator Class creating X amount of cities giving x and y value between chosen minValue and maxValue
+    // create folder where it can save those files to
+    // set radius of acceptable values to keep minimum distance between cities
+    // create city
+    // create new city, check distance from previously created cities, if distance <= X, then recreate it
+    // do this x time
+
+    //
 }
