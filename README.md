@@ -168,7 +168,7 @@ Mutation however, does not occur every single time during the reproduction proce
 probability of a mutation occurring to 10%. The mutation probability is something that needs to be experimented with to
 see how evolution is impacted depending on the value it is given.
 
-##Creating a City Generator in order to test our GA on a variety of problems.
+## Creating a City Generator in order to test our GA on a variety of problems.
 
 Creating a City generator from scratch gives you more freedom to test and explore the limits of your newly created GA.
 Indeed, it allows you to create any desired list of cities and gives you full control over certain parameters such as
@@ -192,6 +192,6 @@ and a minimum distance to respect between each city.
   a compatible one before moving on. If after z number of times we still have not created a city which can be added to
   our list, decrease the cityNumber parameter by 1, move on and repeat the previous steps x-1 times.
 
-##Results
+## Results
 
 
