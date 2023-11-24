@@ -3,23 +3,26 @@
  */
 package ga_ts;
 
+import java.util.ArrayList;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        //Set our parameters
+        int generationNumber = 1000;
+        int popSize = 50;
+        int poolSize = 10;
+        double mutationRate = 0.10;
+
+        //Generate our list of cities
+        CityGenerator cityGen = new CityGenerator(150, -200,1400,30, true);
+        cityGen.writeToCSVFile();
+        ArrayList<City> cityList = cityGen.generatedCities;
+
+        //Create our GA
+
+        //Print the results
+        System.out.println();
     }
 
-    // function reading from a file to create cities
-
-    // create a generator Class creating X amount of cities giving x and y value between chosen minValue and maxValue
-    // create folder where it can save those files to
-    // set radius of acceptable values to keep minimum distance between cities
-    // create city
-    // create new city, check distance from previously created cities, if distance <= X, then recreate it
-    // do this x time
-
-    //
 }
