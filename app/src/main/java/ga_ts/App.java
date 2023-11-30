@@ -55,15 +55,26 @@ public class App {
             Route mutatedChild = mutation.applyMutation(child);
 
             //Add child to population
-
+            pop.addToPopulation(mutatedChild);
 
             //Up the counter
             counter++;
 
         }
 
+        int counter2 = 0;
+        while(counter2 < generationNumber){
+            System.out.println("Generation : " + "\t" + counter2 + "\n" + "| Average Fitness : "
+                    + averageFitnessPerGen.get(counter2) + "\n" + " | Highest Fitness : "
+                    + bestFitnessPerGen.get(counter2));
+        }
+
         //Print the results
-        System.out.println();
+        System.out.println("Fittest Individual Found : " + "\n"
+                + "Distance : " + fittestIndiv.routeDistance + "\n"
+                + "Fitness : " + fittestIndiv.fitness + "\n"
+                + "Route : " + fittestIndiv.route);
+
     }
 
 }
