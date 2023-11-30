@@ -73,7 +73,7 @@ public class PopulationTest {
     }
 
     @Test
-    void testHighestFitness(){
+    void testFittestIndividual(){
         //Creating our list of cities
         City city1 = new City(2, 3);
         City city2 = new City(6, 6);
@@ -106,10 +106,8 @@ public class PopulationTest {
         pop.changeFitness(route2, 0.0014);
         pop.changeFitness(route3, 0.24423);
 
-        double expected = 0.50;
-        assertEquals(expected, pop.highestFitness);
+        Route expected = route1;
+        assertEquals(expected, pop.findFittestIndividual());
     }
-
-
 
 }
