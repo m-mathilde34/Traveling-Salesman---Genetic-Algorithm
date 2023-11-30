@@ -3,6 +3,7 @@
  */
 package ga_ts;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class App {
@@ -12,7 +13,7 @@ public class App {
         int generationNumber = 1000;
         int popSize = 50;
         int poolSize = 10;
-        double mutationRate = 0.10;
+        float mutationRate = 0.10f;
 
         //Generate our list of cities
         CityGenerator cityGen = new CityGenerator(150, -200,1400,30, true);
@@ -20,6 +21,46 @@ public class App {
         ArrayList<City> cityList = cityGen.generatedCities;
 
         //Create our GA
+        Population initialPop = new Population(cityList, popSize);
+
+        //Create a list of metrics which we can use to visualise the data
+        Route fittestIndiv = initialPop.findFittestIndividual();
+        ArrayList<Double> bestFitnessPerGen = new ArrayList<>();
+        ArrayList<Double> averageFitnessPerGen = new ArrayList<>();
+
+        Population pop = initialPop;
+
+        int counter=0;
+        while(counter<generationNumber){
+            //Add our metrics to their lists
+            averageFitnessPerGen.add(pop.averageFitness);
+            bestFitnessPerGen.add(pop.fittestIndividual.fitness);
+
+            //Start selection
+            Selection select1 = new Selection(pop, poolSize);
+            Selection select2 = new Selection(pop, poolSize);
+
+            //Get parent1
+            Route parent1 = select1.getFittestIndividual();
+
+            //Get parent2
+            Route parent2 = select2.getFittestIndividual();
+
+            //Reproduce
+            Reproduction reproduction = new Reproduction(parent1, parent2);
+            Route child = reproduction.getChild();
+
+            //Mutation?
+            Mutation mutation = new Mutation(child, mutationRate);
+            Route mutatedChild = mutation.applyMutation(child);
+
+            //Add child to population
+
+
+            //Up the counter
+            counter++;
+
+        }
 
         //Print the results
         System.out.println();
