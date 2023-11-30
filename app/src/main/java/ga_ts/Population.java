@@ -115,4 +115,17 @@ public class Population {
         return fittestIndividual;
     }
 
+    /**
+     * Method allowing us to add children Routes to our population.
+     * The size of the population therefore increases by 1 and the metrics are re-calculated.
+     * @param child, a Route child which is the result of a reproduction.
+     *
+     */
+    public void addToPopulation(Route child){
+        routes.add(child);
+        popSize++;
+        averageFitness = calculateAverageFitness();
+        fittestIndividual = findFittestIndividual();
+    }
+
 }
