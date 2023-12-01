@@ -82,6 +82,7 @@ public class Selection {
     /**
      * Find the fittest individual of a selection pool.
      * Compare each individual (route) to find the highest fitness and therefore the fittest route.
+     * Take it out of the pool so that we may then proceed to further selection in order to choose parent2.
      * @return fittestIndividual, the fittest individual in this pool.
      *
      */
