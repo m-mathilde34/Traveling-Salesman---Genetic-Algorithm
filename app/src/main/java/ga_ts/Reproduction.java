@@ -63,7 +63,10 @@ public class Reproduction {
         }
 
         int lowerBound = Math.min(randomX, randomY);
-        int higherBound = Math.min(randomX, randomY);
+        int higherBound = Math.max(randomX, randomY);
+
+        //Set your placeCounter before decreasing higherBound.
+        int placeCounter = higherBound+1;
 
         while(higherBound >= lowerBound){
             childArray[higherBound] = this.parent1.route.get(higherBound);
@@ -72,9 +75,10 @@ public class Reproduction {
 
         //Then, go through parent2 one element at a time. if it is already present in child, skip. Otherwise, insert.
         //continue until parent2 has no more new elements.
+        int loopCounter = 0;
         int counter = 0;
-        while(counter < this.parent2.route.size()){
-            City cityToTest = this.parent2.route.get(counter);
+        while(loopCounter < this.parent2.route.size()){
+            City cityToTest = this.parent2.route.get(loopCounter);
             boolean cityPresent = false;
 
             for(int i=0; i<childArray.length; i++){
@@ -83,11 +87,21 @@ public class Reproduction {
                 }
             }
 
+            //Need to ensure that it doesn't overwrite parent1's genetic material
+            //If the counter is less than the lower bound, the gene can be written
+            //Otherwise, as soon as counter>= lower bound, then we place each new element after the higher bound.
             if(cityPresent == false){
-                childArray[counter] = cityToTest;
+                if(counter<lowerBound){
+                    childArray[counter] = cityToTest;
+                    counter++;
+                }
+                else{
+                    childArray[placeCounter] = cityToTest;
+                    placeCounter++;
+                }
             }
 
-            counter++;
+            loopCounter++;
         }
 
         //Change child array into ArrayList
