@@ -10,41 +10,38 @@ public class App {
 
     public static void main(String[] args) {
         //Set our parameters
-        int generationNumber = 1000;
-        int popSize = 50;
-        int poolSize = 10;
+        int generationNumber = 100;
+        int popSize = 20;
+        int poolSize = 5;
         float mutationRate = 0.10f;
 
         //Generate our list of cities
-        CityGenerator cityGen = new CityGenerator(150, -200,1400,30, true);
+        CityGenerator cityGen = new CityGenerator(150, -200,500,30, true);
         cityGen.writeToCSVFile();
         ArrayList<City> cityList = cityGen.generatedCities;
 
         //Create our GA
-        Population initialPop = new Population(cityList, popSize);
+        Population pop = new Population(cityList, popSize);
 
         //Create a list of metrics which we can use to visualise the data
-        Route fittestIndiv = initialPop.findFittestIndividual();
+        Route fittestIndiv = pop.findFittestIndividual();
         ArrayList<Double> bestFitnessPerGen = new ArrayList<>();
         ArrayList<Double> averageFitnessPerGen = new ArrayList<>();
-
-        Population pop = initialPop;
 
         int counter=0;
         while(counter<generationNumber){
             //Add our metrics to their lists
-            averageFitnessPerGen.add(pop.averageFitness);
-            bestFitnessPerGen.add(pop.fittestIndividual.fitness);
+            averageFitnessPerGen.add(counter, pop.averageFitness);
+            bestFitnessPerGen.add(counter, pop.fittestIndividual.fitness);
 
             //Start selection
             Selection select1 = new Selection(pop, poolSize);
-            Selection select2 = new Selection(pop, poolSize);
 
             //Get parent1
             Route parent1 = select1.getFittestIndividual();
 
             //Get parent2
-            Route parent2 = select2.getFittestIndividual();
+            Route parent2 = select1.getFittestIndividual();
 
             //Reproduce
             Reproduction reproduction = new Reproduction(parent1, parent2);
@@ -57,16 +54,17 @@ public class App {
             //Add child to population
             pop.addToPopulation(mutatedChild);
 
+            //Check fittest individual
+            fittestIndiv = pop.findFittestIndividual();
+
+            //Print out the results
+            System.out.println("Generation : " + "\t" + counter + "\n" + "| Average Fitness : "
+                    + averageFitnessPerGen.get(counter) + "\n" + " | Highest Fitness : "
+                    + bestFitnessPerGen.get(counter));
+
             //Up the counter
             counter++;
 
-        }
-
-        int counter2 = 0;
-        while(counter2 < generationNumber){
-            System.out.println("Generation : " + "\t" + counter2 + "\n" + "| Average Fitness : "
-                    + averageFitnessPerGen.get(counter2) + "\n" + " | Highest Fitness : "
-                    + bestFitnessPerGen.get(counter2));
         }
 
         //Print the results
