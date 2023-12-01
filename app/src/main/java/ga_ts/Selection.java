@@ -9,7 +9,6 @@ public class Selection {
 
     public int k;
     public ArrayList<Route> pool;
-    public Route fittestIndividual;
 
     /**
      * Constructor method.
@@ -21,7 +20,6 @@ public class Selection {
     public Selection(Population pop){
         this.k = 40;
         pool = createTournamentPool(pop);
-        fittestIndividual = getFittestIndividual();
     }
 
     /**
@@ -33,7 +31,6 @@ public class Selection {
     public Selection(Population pop, int k){
         this.k = k;
         pool = createTournamentPool(pop);
-        fittestIndividual = getFittestIndividual();
     }
 
     /**
@@ -49,7 +46,6 @@ public class Selection {
         int routeIndex = population.routes.indexOf(route);
         population.routes.get(routeIndex).setFitness(fitness);
         route.setFitness(fitness);
-        this.fittestIndividual = getFittestIndividual();
     }
 
     /**
@@ -103,6 +99,8 @@ public class Selection {
             }
             counter += 1;
         }
+
+        pool.remove(fittestIndividual);
 
         return fittestIndividual;
     }
