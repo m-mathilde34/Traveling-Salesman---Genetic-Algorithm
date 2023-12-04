@@ -169,6 +169,7 @@ probability of a mutation occurring to 10%. The mutation probability is somethin
 see how evolution is impacted depending on the value it is given.
 
 ## Creating a City Generator in order to test our GA on a variety of problems.
+
 Creating a City generator from scratch gives you more freedom to test and explore the limits of your newly created GA.
 Indeed, it allows you to create any desired list of cities and gives you full control over certain parameters such as
 the number of cities, the minimum distance between each city as well as the range between which each x and y coordinate
