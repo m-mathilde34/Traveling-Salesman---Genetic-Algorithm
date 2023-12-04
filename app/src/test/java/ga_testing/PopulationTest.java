@@ -73,7 +73,7 @@ public class PopulationTest {
     }
 
     @Test
-    void testHighestFitness(){
+    void testFittestIndividual(){
         //Creating our list of cities
         City city1 = new City(2, 3);
         City city2 = new City(6, 6);
@@ -106,10 +106,89 @@ public class PopulationTest {
         pop.changeFitness(route2, 0.0014);
         pop.changeFitness(route3, 0.24423);
 
-        double expected = 0.50;
-        assertEquals(expected, pop.highestFitness);
+        Route expected = route1;
+        assertEquals(expected, pop.findFittestIndividual());
     }
 
+    @Test
+    void testAddToPopulation(){
+        //Creating our list of cities
+        City city1 = new City(2, 3);
+        City city2 = new City(6, 6);
+        City city3 = new City(13, 9);
+        City city4 = new City(20, 12);
+        City city5 = new City(8, 1);
+        City city6 = new City(15, 10);
+        City city7 = new City(5, 11);
+        City city8 = new City(10, 19);
+        City city9 = new City(18, 7);
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(city1);
+        cities.add(city2);
+        cities.add(city3);
+        cities.add(city4);
+        cities.add(city5);
+        cities.add(city6);
+        cities.add(city7);
+        cities.add(city8);
+        cities.add(city9);
+
+        //Creating our population with a specific size
+        Population pop = new Population(cities, 3);
+
+        //Create a child Route
+        Route child = new Route(cities);
+
+        //Add it to our population
+        pop.addToPopulation(child);
+
+        int popLength = 4;
+        assertEquals(popLength, pop.popSize);
+    }
+
+    @Test
+    void testAddToPopulationFitnessChange(){
+        //Creating our list of cities
+        City city1 = new City(2, 3);
+        City city2 = new City(6, 6);
+        City city3 = new City(13, 9);
+        City city4 = new City(20, 12);
+        City city5 = new City(8, 1);
+        City city6 = new City(15, 10);
+        City city7 = new City(5, 11);
+        City city8 = new City(10, 19);
+        City city9 = new City(18, 7);
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(city1);
+        cities.add(city2);
+        cities.add(city3);
+        cities.add(city4);
+        cities.add(city5);
+        cities.add(city6);
+        cities.add(city7);
+        cities.add(city8);
+        cities.add(city9);
+
+        //Creating our population with a specific size
+        Population pop = new Population(cities, 3);
+
+        //Create a child Route
+        Route child = new Route(cities);
+
+        //change fitness of our routes
+        Route route1 = pop.routes.get(0);
+        Route route2 = pop.routes.get(1);
+        Route route3 = pop.routes.get(2);
+        pop.changeFitness(route1, 0);
+        pop.changeFitness(route2, 0);
+        pop.changeFitness(route3, 0);
+
+        //Add it to our population
+        pop.addToPopulation(child);
+
+        Route expectedFittest = pop.routes.get(3);
+        assertEquals(expectedFittest, pop.fittestIndividual);
+    }
 
 
 }

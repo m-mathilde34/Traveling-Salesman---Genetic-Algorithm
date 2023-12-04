@@ -88,7 +88,7 @@ public class SelectionTest {
         //Route at index 2 with fitness of 150 should be our fittest individual
         Route expected_winner = select.pool.get(2);
 
-        assertEquals(expected_winner, select.fittestIndividual);
+        assertEquals(expected_winner, select.getFittestIndividual());
 
     }
 

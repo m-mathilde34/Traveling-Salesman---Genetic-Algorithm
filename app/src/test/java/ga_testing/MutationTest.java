@@ -13,7 +13,7 @@ public class MutationTest {
     void applyMutationTest(){
         //Creating our list of cities
         City city1 = new City(2, 3);
-        City city2 = new City(6, 6);
+        City city2 = new City(6, 7);
         City city3 = new City(13, 9);
         City city4 = new City(20, 12);
         City city5 = new City(8, 1);
@@ -37,10 +37,9 @@ public class MutationTest {
 
         //Applying selection
         Selection selection1 = new Selection(pop);
-        Selection selection2 = new Selection(pop);
 
         //Applying reproduction
-        Reproduction reproduction = new Reproduction(selection1.fittestIndividual, selection2.fittestIndividual);
+        Reproduction reproduction = new Reproduction(selection1.getFittestIndividual(), selection1.getFittestIndividual());
 
         //Getting our child
         Route child = reproduction.child;
@@ -82,10 +81,9 @@ public class MutationTest {
 
         //Applying selection
         Selection selection1 = new Selection(pop);
-        Selection selection2 = new Selection(pop);
 
         //Applying reproduction
-        Reproduction reproduction = new Reproduction(selection1.fittestIndividual, selection2.fittestIndividual);
+        Reproduction reproduction = new Reproduction(selection1.getFittestIndividual(), selection1.getFittestIndividual());
 
         //Getting our child
         Route child = reproduction.child;
@@ -124,10 +122,9 @@ public class MutationTest {
 
         //Applying selection
         Selection selection1 = new Selection(pop);
-        Selection selection2 = new Selection(pop);
 
         //Applying reproduction
-        Reproduction reproduction = new Reproduction(selection1.fittestIndividual, selection2.fittestIndividual);
+        Reproduction reproduction = new Reproduction(selection1.getFittestIndividual(), selection1.getFittestIndividual());
 
         //Getting our child
         Route child = reproduction.child;

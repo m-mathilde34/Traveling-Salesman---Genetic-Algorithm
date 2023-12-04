@@ -7,21 +7,21 @@ public class Population {
 
     public ArrayList<Route> routes;
     public double averageFitness;
-    public double highestFitness;
+    public Route fittestIndividual;
     public int popSize;
 
     /**
      * Constructor method which creates and initialise the object (the population).
      * It randomly creates routes to create a population.
      * The population is made of 100 individuals (popSize).
-     * Each population has a maximum fitness as well as an average fitness.
+     * Each population has a fittest individual as well as an average fitness.
      *
      */
     public Population(ArrayList<City> cities) {
         popSize = 100;
         routes = createRoutesList(cities);
         averageFitness = calculateAverageFitness();
-        highestFitness = findHighestFitness();
+        fittestIndividual = findFittestIndividual();
     }
 
     /**
@@ -33,7 +33,7 @@ public class Population {
         popSize = populationSize;
         routes = createRoutesList(cities);
         averageFitness = calculateAverageFitness();
-        highestFitness = findHighestFitness();
+        fittestIndividual = findFittestIndividual();
     }
 
     /**
@@ -46,7 +46,7 @@ public class Population {
      */
     public void changeFitness(Route route, double fitness){
         route.setFitness(fitness);
-        this.highestFitness = findHighestFitness();
+        this.fittestIndividual = findFittestIndividual();
         this.averageFitness = calculateAverageFitness();
     }
 
@@ -92,25 +92,40 @@ public class Population {
     }
 
     /**
-     * Find the highest fitness value for a population.
+     * Find the fittest individual for a population.
      * Compare each individual (route) to find the highest fitness.
-     * @return max_fitness, the maximum fitness value of a given population.
+     * @return fittestIndividual, the Route with the best fitness value of a given population.
      *
      */
-    public double findHighestFitness(){
+    public Route findFittestIndividual(){
         Route route;
         int counter = 0;
         double max_fitness = 0;
+        Route fittestIndividual = null;
 
         while(counter < popSize){
             route = routes.get(counter);
             if(route.fitness > max_fitness){
                 max_fitness = route.fitness;
+                fittestIndividual = route;
             }
             counter += 1;
         }
 
-        return max_fitness;
+        return fittestIndividual;
+    }
+
+    /**
+     * Method allowing us to add children Routes to our population.
+     * The size of the population therefore increases by 1 and the metrics are re-calculated.
+     * @param child, a Route child which is the result of a reproduction.
+     *
+     */
+    public void addToPopulation(Route child){
+        routes.add(child);
+        popSize++;
+        averageFitness = calculateAverageFitness();
+        fittestIndividual = findFittestIndividual();
     }
 
 }

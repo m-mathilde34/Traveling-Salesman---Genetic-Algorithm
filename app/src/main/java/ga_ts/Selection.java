@@ -9,7 +9,6 @@ public class Selection {
 
     public int k;
     public ArrayList<Route> pool;
-    public Route fittestIndividual;
 
     /**
      * Constructor method.
@@ -21,7 +20,6 @@ public class Selection {
     public Selection(Population pop){
         this.k = 40;
         pool = createTournamentPool(pop);
-        fittestIndividual = getFittestIndividual();
     }
 
     /**
@@ -33,7 +31,6 @@ public class Selection {
     public Selection(Population pop, int k){
         this.k = k;
         pool = createTournamentPool(pop);
-        fittestIndividual = getFittestIndividual();
     }
 
     /**
@@ -49,7 +46,6 @@ public class Selection {
         int routeIndex = population.routes.indexOf(route);
         population.routes.get(routeIndex).setFitness(fitness);
         route.setFitness(fitness);
-        this.fittestIndividual = getFittestIndividual();
     }
 
     /**
@@ -86,6 +82,7 @@ public class Selection {
     /**
      * Find the fittest individual of a selection pool.
      * Compare each individual (route) to find the highest fitness and therefore the fittest route.
+     * Take it out of the pool so that we may then proceed to further selection in order to choose parent2.
      * @return fittestIndividual, the fittest individual in this pool.
      *
      */
@@ -103,6 +100,8 @@ public class Selection {
             }
             counter += 1;
         }
+
+        pool.remove(fittestIndividual);
 
         return fittestIndividual;
     }

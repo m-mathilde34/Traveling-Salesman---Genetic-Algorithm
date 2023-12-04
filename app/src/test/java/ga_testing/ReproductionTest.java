@@ -37,15 +37,14 @@ public class ReproductionTest {
 
         //Applying selection
         Selection selection1 = new Selection(pop);
-        Selection selection2 = new Selection(pop);
 
         //Applying reproduction
-        Reproduction reproduction = new Reproduction(selection1.fittestIndividual, selection2.fittestIndividual);
+        Reproduction reproduction = new Reproduction(selection1.getFittestIndividual(), selection1.getFittestIndividual());
 
         //Testing that our child is of the same length as its parent
         Route child = reproduction.child;
         int childLength = child.route.size();
-        assertEquals(childLength, selection1.fittestIndividual.route.size());
+        assertEquals(childLength, selection1.getFittestIndividual().route.size());
     }
 
 }
