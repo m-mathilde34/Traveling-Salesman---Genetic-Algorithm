@@ -59,7 +59,7 @@ public class App {
 
             //Print out the results
             System.out.println("Generation : " + "\t" + counter + "\n" + "| Average Fitness : "
-                    + averageFitnessPerGen.get(counter) + "\n" + " | Highest Fitness : "
+                    + averageFitnessPerGen.get(counter) + "\n" + "| Highest Fitness : "
                     + bestFitnessPerGen.get(counter));
 
             //Up the counter
