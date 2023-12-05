@@ -57,21 +57,19 @@ public class App {
             //Check fittest individual
             fittestIndiv = pop.findFittestIndividual();
 
-            //Print out the results
-            System.out.println("Generation : " + "\t" + counter + "\n" + "| Average Fitness : "
-                    + averageFitnessPerGen.get(counter) + "\n" + "| Highest Fitness : "
-                    + bestFitnessPerGen.get(counter));
-
             //Up the counter
             counter++;
 
         }
 
+        //Save results to CSV File
+        WritingToFile writingToCSV = new WritingToFile("");
+        writingToCSV.saveToCSV(generationNumber, averageFitnessPerGen, bestFitnessPerGen, popSize, poolSize, mutationRate);
+
         //Print the results
         System.out.println("Fittest Individual Found : " + "\n"
                 + "Distance : " + fittestIndiv.routeDistance + "\n"
-                + "Fitness : " + fittestIndiv.fitness + "\n"
-                + "Route : " + fittestIndiv.route);
+                + "Fitness : " + fittestIndiv.fitness + "\n");
 
     }
 
