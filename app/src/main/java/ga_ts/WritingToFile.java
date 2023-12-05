@@ -9,10 +9,25 @@ public class WritingToFile {
 
     public String filename;
 
+    /**
+     * Constructor.
+     * @param filename, a string to be used as the name of our CSV file.
+     *
+     */
     public WritingToFile(String filename){
         this.filename = filename;
     }
 
+    /**
+     * Method to save GA results to a CSV file
+     * @param generations, the total number of generations the GA will run for.
+     * @param averageFitnessPerGen, an ArrayList<Double> with the average fitness value per generation.
+     * @param bestFitnessPerGen, an ArrayList<Double> with the best fitness value per generation.
+     * @param popSize, an int representing the size of the population at the start of the GA.
+     * @param poolSize, an int size indicating the size of the selection pool.
+     * @param mutationRate, a float indication the percentage of chance a child will mutate.
+     *
+     */
     public void saveToCSV(int generations, ArrayList<Double> averageFitnessPerGen, ArrayList<Double> bestFitnessPerGen,
                           int popSize, int poolSize, float mutationRate){
         File csvFile = new File(this.filename);
@@ -28,7 +43,7 @@ public class WritingToFile {
                 fileCSVWriter.write(Integer.toString(counter+1) + "," +
                         Double.toString(averageFitnessPerGen.get(counter)) + "," +
                         Double.toString(bestFitnessPerGen.get(counter)) + "," +
-                        Integer.toString(popSize) + "," +
+                        Integer.toString(popSize+counter) + "," +
                         Integer.toString(poolSize) + "," +
                         Float.toString(mutationRate));
                 //Next line
