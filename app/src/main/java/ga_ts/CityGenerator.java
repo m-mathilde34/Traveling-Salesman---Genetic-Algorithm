@@ -167,11 +167,9 @@ public class CityGenerator {
 
             fileCSVWriter.close();
         } catch(IOException e){
-            System.out.println("Error Occurred Writing To File! :( " + e.getMessage());
+            System.out.println("Error Occurred Writing To File! " + e.getMessage());
         }
     }
-
-    //Read method
 
     /**
      * Method to read a list of cities from a .csv file. This allows us to keep working on the same list of generated
@@ -196,7 +194,7 @@ public class CityGenerator {
             br.close();
 
         } catch(IOException e){
-            System.out.println("Error Occurred Reading From File! :'( "+ e.getMessage());
+            System.out.println("Error Occurred Reading From File! "+ e.getMessage());
         }
 
         return citiesOnFile;
