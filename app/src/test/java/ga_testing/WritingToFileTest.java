@@ -14,6 +14,7 @@ public class WritingToFileTest {
         int poolSize = 4;
         float mutationRate = 0.10f;
         int run=1;
+        int uniqueID = 1;
         ArrayList<Double> averageFitnessPerGen = new ArrayList<>();
         ArrayList<Double> bestFitnessPerGen = new ArrayList<>();
 
@@ -25,8 +26,9 @@ public class WritingToFileTest {
         bestFitnessPerGen.add(1.29393);
         bestFitnessPerGen.add(1.23839);
 
-        WritingToFile writingToFile = new WritingToFile("results/Test.csv");
-        writingToFile.saveToCSV(gen, averageFitnessPerGen, bestFitnessPerGen, popSize, poolSize, mutationRate, run);
+        WritingToFile writingToFile = new WritingToFile("Test");
+        writingToFile.saveToCSV(uniqueID, gen, averageFitnessPerGen, bestFitnessPerGen, popSize, poolSize,
+                mutationRate, run);
 
     }
 }

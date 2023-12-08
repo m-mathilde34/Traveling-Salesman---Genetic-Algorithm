@@ -15,6 +15,8 @@ public class App {
         int poolSize = 5;
         float mutationRate = 0.10f;
         int run = 1;
+        int uniqueID = 1;
+        String filename = "";
 
         //Generate our list of cities
         CityGenerator cityGen = new CityGenerator(150, -200,500,30, true);
@@ -64,8 +66,8 @@ public class App {
         }
 
         //Save results to CSV File
-        WritingToFile writingToCSV = new WritingToFile("results/GA1");
-        writingToCSV.saveToCSV(generationNumber, averageFitnessPerGen, bestFitnessPerGen, popSize, poolSize,
+        WritingToFile writingToCSV = new WritingToFile(filename);
+        writingToCSV.saveToCSV(uniqueID, generationNumber, averageFitnessPerGen, bestFitnessPerGen, popSize, poolSize,
                 mutationRate, run);
 
         //Print the results
