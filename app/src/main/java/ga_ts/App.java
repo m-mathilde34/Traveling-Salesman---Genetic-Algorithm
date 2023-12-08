@@ -64,7 +64,7 @@ public class App {
         }
 
         //Save results to CSV File
-        WritingToFile writingToCSV = new WritingToFile("");
+        WritingToFile writingToCSV = new WritingToFile("results/GA1");
         writingToCSV.saveToCSV(generationNumber, averageFitnessPerGen, bestFitnessPerGen, popSize, poolSize,
                 mutationRate, run);
 

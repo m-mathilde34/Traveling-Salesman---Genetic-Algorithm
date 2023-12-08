@@ -143,7 +143,7 @@ public class CityGenerator {
      *
      */
     public void writeToCSVFile(){
-        File csvFile = new File("cities.csv");
+        File csvFile = new File("cities/cities.csv");
         try(FileWriter fileCSVWriter = new FileWriter(csvFile)) {
 
             //Create a header

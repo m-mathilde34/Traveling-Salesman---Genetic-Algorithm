@@ -16,7 +16,7 @@ public class CityGeneratorTest {
 
     @Test
     void testReadFromFile(){
-        CityGenerator cityGen = new CityGenerator("cities.csv");
+        CityGenerator cityGen = new CityGenerator("cities/cities.csv");
         int cityNumber = cityGen.cityNumber;
 
         assertEquals(10, cityNumber);

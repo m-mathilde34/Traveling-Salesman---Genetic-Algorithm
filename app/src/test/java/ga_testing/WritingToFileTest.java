@@ -25,7 +25,7 @@ public class WritingToFileTest {
         bestFitnessPerGen.add(1.29393);
         bestFitnessPerGen.add(1.23839);
 
-        WritingToFile writingToFile = new WritingToFile("Test.csv");
+        WritingToFile writingToFile = new WritingToFile("results/Test.csv");
         writingToFile.saveToCSV(gen, averageFitnessPerGen, bestFitnessPerGen, popSize, poolSize, mutationRate, run);
 
     }
