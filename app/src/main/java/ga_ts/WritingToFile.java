@@ -29,12 +29,13 @@ public class WritingToFile {
      *
      */
     public void saveToCSV(int generations, ArrayList<Double> averageFitnessPerGen, ArrayList<Double> bestFitnessPerGen,
-                          int popSize, int poolSize, float mutationRate){
+                          int popSize, int poolSize, float mutationRate, int run){
         File csvFile = new File(this.filename);
         try(FileWriter fileCSVWriter = new FileWriter(csvFile)) {
 
             //Create a header
-            fileCSVWriter.write("Generation, Average Fitness, Best Fitness, Population Size, Pool Size, Mutation Rate");
+            fileCSVWriter.write("Generation, Average Fitness, Best Fitness, Population Size, Pool Size, " +
+                    "Mutation Rate, Run");
             fileCSVWriter.write(System.getProperty("line.separator"));
 
             int counter=0;
@@ -45,7 +46,8 @@ public class WritingToFile {
                         Double.toString(bestFitnessPerGen.get(counter)) + "," +
                         Integer.toString(popSize+counter) + "," +
                         Integer.toString(poolSize) + "," +
-                        Float.toString(mutationRate));
+                        Float.toString(mutationRate) + "," +
+                        Integer.toString(run));
                 //Next line
                 fileCSVWriter.write(System.getProperty("line.separator"));
 

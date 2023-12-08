@@ -14,6 +14,7 @@ public class App {
         int popSize = 20;
         int poolSize = 5;
         float mutationRate = 0.10f;
+        int run = 1;
 
         //Generate our list of cities
         CityGenerator cityGen = new CityGenerator(150, -200,500,30, true);
@@ -64,7 +65,8 @@ public class App {
 
         //Save results to CSV File
         WritingToFile writingToCSV = new WritingToFile("");
-        writingToCSV.saveToCSV(generationNumber, averageFitnessPerGen, bestFitnessPerGen, popSize, poolSize, mutationRate);
+        writingToCSV.saveToCSV(generationNumber, averageFitnessPerGen, bestFitnessPerGen, popSize, poolSize,
+                mutationRate, run);
 
         //Print the results
         System.out.println("Fittest Individual Found : " + "\n"
