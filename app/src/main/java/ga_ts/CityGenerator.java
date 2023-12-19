@@ -21,13 +21,14 @@ public class CityGenerator {
      * @param minDistance, the minimum distance between each city.
      *
      */
-    public CityGenerator(int cityNumber, int minValue, int maxValue, double minDistance, boolean writeToFile){
+    public CityGenerator(int cityNumber, int minValue, int maxValue, double minDistance, boolean writeToFile, boolean
+                         isNotTest){
         this.cityNumber = cityNumber;
         this.minValue = minValue;
         this.maxValue = maxValue;
         this.minDistance = minDistance;
         generatedCities = generateListOfCities();
-        if(writeToFile){writeToCSVFile();}
+        if(writeToFile){writeToCSVFile(isNotTest);}
     }
 
     /**
@@ -142,8 +143,13 @@ public class CityGenerator {
      * different lists of cities. It also helps to test methods.
      *
      */
-    public void writeToCSVFile(){
-        File csvFile = new File("cities/cities.csv");
+    public void writeToCSVFile(boolean isNotTest){
+        String filename = "cities/cities.csv";
+        if(isNotTest){
+            filename = "app/" + filename;
+        }
+        File csvFile = new File(filename);
+
         try(FileWriter fileCSVWriter = new FileWriter(csvFile)) {
 
             //Create a header

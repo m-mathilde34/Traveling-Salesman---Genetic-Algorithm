@@ -28,7 +28,7 @@ public class WritingToFileTest {
 
         WritingToFile writingToFile = new WritingToFile("Test");
         writingToFile.saveToCSV(uniqueID, gen, averageFitnessPerGen, bestFitnessPerGen, popSize, poolSize,
-                mutationRate, run);
+                mutationRate, run, false);
 
     }
 }

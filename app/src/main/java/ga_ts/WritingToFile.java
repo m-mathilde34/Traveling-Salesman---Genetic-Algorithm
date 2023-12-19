@@ -32,14 +32,18 @@ public class WritingToFile {
      *
      */
     public void saveToCSV(int uniqueID, int generations, ArrayList<Double> averageFitnessPerGen,
-                          ArrayList<Double> bestFitnessPerGen, int popSize, int poolSize, float mutationRate, int run){
-        saveRunResults(uniqueID, generations, averageFitnessPerGen, bestFitnessPerGen);
-        saveGAParameters(uniqueID, generations, popSize, poolSize, mutationRate, run);
+                          ArrayList<Double> bestFitnessPerGen, int popSize, int poolSize, float mutationRate, int run,
+                          boolean isNotTest){
+        saveRunResults(uniqueID, generations, averageFitnessPerGen, bestFitnessPerGen, isNotTest);
+        saveGAParameters(uniqueID, generations, popSize, poolSize, mutationRate, run, isNotTest);
     }
 
     public void saveRunResults(int uniqueID, int generations, ArrayList<Double> averageFitnessPerGen,
-                               ArrayList<Double> bestFitnessPerGen){
+                               ArrayList<Double> bestFitnessPerGen, boolean isNotTest){
         String file = "results/" + Integer.toString(uniqueID) + "_" + this.filename + "_Results.csv";
+        if(isNotTest){
+            file = "app/" + file;
+        }
         File csvFile = new File(file);
         try(FileWriter fileCSVWriter = new FileWriter(csvFile)) {
 
@@ -65,8 +69,12 @@ public class WritingToFile {
         }
     }
 
-    public void saveGAParameters(int uniqueID, int generations, int popSize, int poolSize, float mutationRate, int run){
+    public void saveGAParameters(int uniqueID, int generations, int popSize, int poolSize, float mutationRate, int run,
+                                 boolean isNotTest){
         String file = "results/" + Integer.toString(uniqueID) + "_" + this.filename + "_Parameters.csv";
+        if(isNotTest){
+            file = "app/" + file;
+        }
         File csvFile = new File(file);
         try(FileWriter fileCSVWriter = new FileWriter(csvFile)) {
 

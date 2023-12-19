@@ -16,11 +16,12 @@ public class App {
         float mutationRate = 0.10f;
         int run = 1;
         int uniqueID = 1;
-        String filename = "";
+        String filename = "GA_Test";
 
         //Generate our list of cities
-        CityGenerator cityGen = new CityGenerator(150, -200,500,30, true);
-        cityGen.writeToCSVFile();
+        CityGenerator cityGen = new CityGenerator(150, -200,500,30, true,
+                true);
+        cityGen.writeToCSVFile(true);
         ArrayList<City> cityList = cityGen.generatedCities;
 
         //Create our GA
@@ -68,7 +69,7 @@ public class App {
         //Save results to CSV File
         WritingToFile writingToCSV = new WritingToFile(filename);
         writingToCSV.saveToCSV(uniqueID, generationNumber, averageFitnessPerGen, bestFitnessPerGen, popSize, poolSize,
-                mutationRate, run);
+                mutationRate, run, true);
 
         //Print the results
         System.out.println("Fittest Individual Found : " + "\n"
