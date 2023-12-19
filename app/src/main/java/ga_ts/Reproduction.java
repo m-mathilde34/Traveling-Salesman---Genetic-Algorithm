@@ -6,26 +6,9 @@ import java.util.Random;
 
 public class Reproduction {
 
-    public int subsectionLength;
-    //public float growthRate = 0.05f;
     public Route parent1;
     public Route parent2;
     public Route child;
-
-    /**
-     * Constructor.
-     * @param generationNumber, the number indication which generation is going through reproduction. The higher the
-     * reproduction number, the longer the subsection we keep from parent1.
-     * @param parent1, a Route selected as parent 1 for reproduction.
-     * @param parent2, a Route selected as parent 2 for reproduction.
-     *
-     */
-//    public Reproduction(int generationNumber, Route parent1, Route parent2){
-//        subsectionLength = determineSubsectionLength(generationNumber);
-//        this.parent1 = parent1;
-//        this.parent2 = parent2;
-//        child = getChild_SetSubsectionLength();
-//    }
 
     /**
      * Constructor.
