@@ -10,8 +10,8 @@ public class CityGeneratorTest {
 
     @Test
     void testSaveToFile(){
-        CityGenerator cityGen = new CityGenerator(10, 10, 200, 20, true);
-        cityGen.writeToCSVFile();
+        CityGenerator cityGen = new CityGenerator(10, 10, 200, 20, true, false);
+        cityGen.writeToCSVFile(false);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class CityGeneratorTest {
 
     @Test
     void testGenerate1City(){
-        CityGenerator cityGen = new CityGenerator(1, 10, 30, 5, false);
+        CityGenerator cityGen = new CityGenerator(1, 10, 30, 5, false, false);
         int sizeOfList = cityGen.generatedCities.size();
 
         assertEquals(1, sizeOfList);
@@ -39,7 +39,7 @@ public class CityGeneratorTest {
 
     @Test
     void testGenerate10Cities(){
-        CityGenerator cityGen = new CityGenerator(10, -20, 100, 5, false);
+        CityGenerator cityGen = new CityGenerator(10, -20, 100, 5, false, false);
         int sizeOfList = cityGen.generatedCities.size();
 
         assertEquals(10, sizeOfList);
@@ -48,7 +48,7 @@ public class CityGeneratorTest {
 
     @Test
     void testMinDistanceNotRespected(){
-        CityGenerator cityGen = new CityGenerator(2, 2,5,5, false);
+        CityGenerator cityGen = new CityGenerator(2, 2,5,5, false, false);
         int sizeOfList = cityGen.generatedCities.size();
         int cityNumber = cityGen.cityNumber;
 
@@ -58,7 +58,7 @@ public class CityGeneratorTest {
 
     @Test
     void testCityNumber0(){
-        CityGenerator cityGen = new CityGenerator(0,2,200,5, false);
+        CityGenerator cityGen = new CityGenerator(0,2,200,5, false, false);
 
         assertEquals(0, cityGen.generatedCities.size());
         assertEquals(0, cityGen.cityNumber);
